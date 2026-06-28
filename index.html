@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Quest</title>
+  <meta name="description" content="Student portfolio" />
+
+  <!-- Fonts (works offline once cached; fallback monospace shown if no internet) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link href="https://fonts.googleapis.czom/css2?family=Press+Start+2P&family=VT323&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══ LOADING SCREEN ══════════════════════════════════ -->
+<div id="loading-screen" role="status" aria-live="polite">
+  <div class="ls-title">⚔ PORTFOLIO QUEST<br>676767676</div>
+  <div class="ls-bar-wrap"><div class="ls-bar-fill"></div></div>
+  <div class="ls-blink">▶ PRESS START</div>
+</div>
+
+<!-- ══ CUSTOM CURSOR ═══════════════════════════════════ -->
+<div id="cursor-dot" aria-hidden="true"></div>
+
+<!-- ══ MODAL (global, one instance) ═══════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Detail view">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<!-- ══ STICKY NAV ══════════════════════════════════════ -->
+<nav id="main-nav" aria-label="Portfolio sections">
+  <a href="#hero" class="nav-brand">⚔ QUEST</a>
+
+  <a href="#hero"         class="nav-link active" data-target="hero">🏠 Home</a>
+  <a href="#xp-stats"     class="nav-link" data-target="xp-stats">⭐ Stats</a>
+  <a href="#achievements" class="nav-link" data-target="achievements">🏅 Awards</a>
+  <a href="#innovation"   class="nav-link" data-target="innovation">🔬 Projects</a>
+  <a href="#robotics"     class="nav-link" data-target="robotics">🤖 Robots</a>
+  <a href="#coding"       class="nav-link" data-target="coding">💻 Coding</a>
+  <a href="#adventure"    class="nav-link" data-target="adventure">🌱 Volunteer</a>
+  <a href="#leadership"   class="nav-link" data-target="leadership">👑 Leadership</a>
+  <a href="#boss-battle"  class="nav-link" data-target="boss-battle">⚔ Challenges</a>
+  <a href="#future"       class="nav-link" data-target="future">🌟 Future</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 1 — HOME TOWN (Hero)
+══════════════════════════════════════════════════════ -->
+<section id="hero" class="section bg-sky sky-wrap" data-spy="hero" aria-labelledby="hero-heading">
+  <div class="hero-layout">
+
+    <!-- Character Card -->
+    <div class="char-card" role="complementary" aria-label="Character profile card">
+      <div class="char-card-head">
+        <span id="hero-level-badge">LEVEL ?</span>
+        <span>🎮 PLAYER CARD</span>
+      </div>
+      <div class="char-card-body">
+        <div class="char-avatar-row">
+          <div class="avatar-wrap">
+            <img id="hero-avatar" src="images/profile-placeholder.png" alt="Profile photo" width="90" height="90" />
+          </div>
+          <div>
+            <div class="char-name" id="hero-name">Loading…</div>
+            <div class="char-aspiration" id="hero-aspiration"></div>
+            <div class="char-school" id="hero-school"></div>
+          </div>
+        </div>
+        <!-- Skills — populated by script.js -->
+        <div class="char-skills" id="char-skills"></div>
+        <!-- Interests — populated by script.js -->
+        <div class="char-interests" id="hero-interests"></div>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="hero-text">
+      <div class="dialogue hero-intro" id="hero-intro">
+        <p id="hero-intro-text">Loading introduction…</p>
+      </div>
+      <div id="hero-links" class="hero-links"></div>
+      <!-- Quick-jump buttons -->
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
+        <a href="#achievements" class="px-btn">🏅 See Achievements</a>
+        <a href="#innovation"   class="px-btn green">🔬 See Projects</a>
+        <a href="#future"       class="px-btn purple">🌟 Future Goals</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Skills ticker -->
+<div class="ticker-wrap" aria-hidden="true">
+  <span class="ticker-inner" id="ticker-inner">Loading…</span>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 2 — XP STATISTICS
+══════════════════════════════════════════════════════ -->
+<section id="xp-stats" class="section bg-grass" data-spy="xp-stats" aria-labelledby="xp-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" id="xp-heading"><span class="zt-icon">⭐</span>ADVENTURE STATS</h2>
+    <div class="xp-grid reveal-stagger" id="xp-grid" aria-label="Statistics"></div>
+  </div>
+</section>
+
+<div class="ground" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 3 — ACHIEVEMENT MOUNTAIN
+══════════════════════════════════════════════════════ -->
+<section id="achievements" class="section bg-cream" data-spy="achievements" aria-labelledby="ach-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" id="ach-heading"><span class="zt-icon">🏔️</span>ACHIEVEMENT MOUNTAIN</h2>
+    <p style="font-family:var(--font-retro);font-size:19px;color:var(--text-mid);margin-bottom:22px">
+      Click any trophy to read the full story!
+    </p>
+    <div id="ach-grid" aria-label="Achievements" role="list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 4 — INNOVATION LAB (Projects)
+══════════════════════════════════════════════════════ -->
+<section id="innovation" class="section bg-sky sky-wrap" data-spy="innovation" aria-labelledby="proj-heading">
+  <div class="section-inner" style="position:relative;z-index:2">
+    <h2 class="zone-title" id="proj-heading"><span class="zt-icon">🔬</span>INNOVATION LAB</h2>
+    <div class="card-grid" id="projects-grid" aria-label="Projects" role="list"></div>
+  </div>
+</section>
+
+<div class="ground" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 5 — ROBOT FACTORY
+══════════════════════════════════════════════════════ -->
+<section id="robotics" class="section bg-beige" data-spy="robotics" aria-labelledby="rob-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" id="rob-heading"><span class="zt-icon">🤖</span>ROBOT FACTORY</h2>
+    <div class="card-grid" id="robotics-grid" aria-label="Robotics projects" role="list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 6 — CODING CAVE
+══════════════════════════════════════════════════════ -->
+<section id="coding" class="section bg-cave" data-spy="coding" aria-labelledby="code-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" id="code-heading"><span class="zt-icon">💻</span>CODING CAVE</h2>
+    <div class="card-grid" id="coding-grid" aria-label="Coding projects" role="list"></div>
+  </div>
+</section>
+
+<div class="ground" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 7 — ADVENTURE LOG (Volunteer)
+══════════════════════════════════════════════════════ -->
+<section id="adventure" class="section bg-grass sky-wrap" data-spy="adventure" aria-labelledby="vol-heading">
+  <div class="section-inner" style="position:relative;z-index:2">
+    <h2 class="zone-title" id="vol-heading"><span class="zt-icon">🌱</span>ADVENTURE LOG</h2>
+    <p style="font-family:var(--font-retro);font-size:19px;color:var(--text-mid);margin-bottom:20px">
+      Community service, outreach, and volunteer quests.
+    </p>
+    <div class="adv-list" id="volunteer-list" aria-label="Volunteer experiences" role="list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 8 — LEADERSHIP HALL
+══════════════════════════════════════════════════════ -->
+<section id="leadership" class="section bg-dusk" data-spy="leadership" aria-labelledby="lead-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" id="lead-heading"><span class="zt-icon">👑</span>LEADERSHIP HALL</h2>
+    <div class="adv-list" id="leadership-list" aria-label="Leadership roles" role="list"></div>
+  </div>
+</section>
+
+<div class="ground" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 9 — BOSS BATTLE ARENA
+══════════════════════════════════════════════════════ -->
+<section id="boss-battle" class="section bg-battle" data-spy="boss-battle" aria-labelledby="boss-heading">
+  <div class="section-inner">
+    <h2 class="zone-title" style="color:#8b2010" id="boss-heading"><span class="zt-icon">⚔️</span>BOSS BATTLE ARENA</h2>
+    <p style="font-family:var(--font-retro);font-size:19px;color:var(--text-mid);margin-bottom:20px">
+      Every hero faces challenges. Here is how I defeated mine.
+    </p>
+    <div class="boss-grid" id="boss-grid" aria-label="Challenges overcome" role="list"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 10 — FUTURE QUEST BOARD
+══════════════════════════════════════════════════════ -->
+<section id="future" class="section bg-sky sky-wrap" data-spy="future" aria-labelledby="future-heading">
+  <div class="section-inner" style="position:relative;z-index:2">
+    <h2 class="zone-title" id="future-heading"><span class="zt-icon">🌟</span>FUTURE QUEST BOARD</h2>
+    <div class="future-stats" id="future-stats"></div>
+    <div class="quest-board" style="margin-top:32px">
+      <ul class="quest-list" id="quest-list" aria-label="Future goals"></ul>
+    </div>
+  </div>
+</section>
+
+<div class="ground" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     SECTION 11 — EDIT GUIDE
+══════════════════════════════════════════════════════ -->
+<section id="edit-guide" aria-labelledby="guide-heading">
+  <div class="edit-guide-inner">
+    <h2 class="eg-title" id="guide-heading">✏️ HOW TO EDIT THIS PORTFOLIO</h2>
+    <ol class="eg-steps">
+      <li class="eg-step">
+        <div class="eg-step-num">1</div>
+        <div class="eg-step-text">Open <code>data.js</code> in any text editor (Notepad, VS Code, TextEdit).</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">2</div>
+        <div class="eg-step-text">Replace the <code>[placeholder]</code> text with your real information — name, school, achievements, projects, and more.</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">3</div>
+        <div class="eg-step-text">Place your <strong>profile photo</strong> in <code>images/</code> and update <code>profilePhoto:</code> in data.js.</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">4</div>
+        <div class="eg-step-text">Put achievement/project photos in <code>images/achievements/</code>, <code>images/projects/</code>, or <code>images/robots/</code> and update each <code>imagePath:</code>.</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">5</div>
+        <div class="eg-step-text">Put certificates in <code>images/certificates/</code> and update each <code>certificatePath:</code>.</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">6</div>
+        <div class="eg-step-text">Save <code>data.js</code>, then open (or refresh) <code>index.html</code> in your browser. No internet or server needed!</div>
+      </li>
+      <li class="eg-step">
+        <div class="eg-step-num">7</div>
+        <div class="eg-step-text">To add more achievements or projects, copy and paste an existing block inside <code>data.js</code> and fill in the new details.</div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer>
+  <div>⚔️ PORTFOLIO QUEST ⚔️</div>
+  <div style="font-size:7px;opacity:0.6;margin-top:4px">Open data.js to edit · No internet needed</div>
+</footer>
+
+<!-- Scripts — data.js must come before script.js -->
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
