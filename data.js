@@ -18,7 +18,7 @@ const PORTFOLIO = {
   // ══════════════════════════════════════════════════════════════
   profile: {
     name:            "Yael",
-    school:          "[School Name Here]",
+    school:          "Murdoch University",
     level:           "[Student Level / Year Here]",      // e.g. "Secondary 4"
     class:           "[Career Aspiration Here]",          // e.g. "Future AI Researcher"
     tagline:         "[Short tagline here]",              // e.g. "Building tomorrow, one line at a time"
